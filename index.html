@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prince Tripathi — Product Leader · 2x Founder</title>
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #C9A84C;
+      --gold-light:  #E8C97A;
+      --gold-dark:   #A07830;
+      --black:       #0A0A0A;
+      --black-soft:  #111111;
+      --black-card:  #141414;
+      --black-card2: #1A1A1A;
+      --text:        #E8E8E8;
+      --text-muted:  #888888;
+      --border:      #2A2A2A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── Typography ───────────────────────────────────────────── */
+    h1, h2, h3, h4, .mono {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── Nav ──────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+
+    .nav-logo {
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ─── Section Wrapper ──────────────────────────────────────── */
+    section {
+      padding: 120px 60px;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 60px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-top: 14px;
+    }
+
+    .max-w {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ─── Hero ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 40px;
+      position: relative;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+        var(--black);
+      overflow: hidden;
+    }
+
+    /* subtle grid overlay */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-inner { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      font-family: 'Trebuchet MS', sans-serif;
+      opacity: 0.9;
+    }
+
+    .hero-name {
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+
+    .hero-name span {
+      color: var(--gold);
+    }
+
+    /* animated gold underline */
+    .gold-underline {
+      display: inline-block;
+      position: relative;
+    }
+    .gold-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+      background-size: 200% 100%;
+      animation: shimmer 2.4s linear infinite;
+      border-radius: 2px;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .hero-title {
+      font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      font-family: 'Trebuchet MS', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .hero-dot { color: var(--gold); margin: 0 8px; }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 52px;
+      opacity: 0.85;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      padding: 16px 44px;
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+      text-decoration: none;
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s;
+      cursor: pointer;
+    }
+
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+
+    .btn-gold:hover { color: var(--black); }
+    .btn-gold:hover::before { transform: translateX(0); }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+    }
+    .scroll-indicator span {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      animation: scrollDrop 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollDrop {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
+    }
+
+    /* ─── About ────────────────────────────────────────────────── */
+    #about {
+      background: var(--black-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-left {}
+
+    .about-stat {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .stat-item {}
+
+    .stat-number {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: 'Trebuchet MS', sans-serif;
+      margin-top: 4px;
+    }
+
+    .about-text {
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: #C8C8C8;
+      border-left: 3px solid var(--gold);
+      padding-left: 32px;
+      position: relative;
+    }
+
+    .about-text::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: 0.15;
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .tag {
+      padding: 6px 16px;
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-family: 'Trebuchet MS', sans-serif;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .tag:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: var(--gold);
+    }
+
+    /* ─── Experience ───────────────────────────────────────────── */
+    #experience { background: var(--black); }
+
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+
+    /* vertical gold line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 7px;
+      width: 2px;
+      bottom: 0;
+      background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.1) 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 48px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    /* gold dot */
+    .timeline-dot {
+      position: absolute;
+      left: -46px;
+      top: 18px;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--gold);
+      background: var(--black);
+      border-radius: 50%;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .timeline-item:hover .timeline-dot {
+      background: var(--gold);
+      box-shadow: 0 0 16px rgba(201,168,76,0.5);
+    }
+
+    .exp-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold-dark);
+      padding: 32px 36px;
+      transition: transform 0.3s, border-left-color 0.3s, box-shadow 0.3s;
+    }
+
+    .exp-card:hover {
+      transform: translateX(6px);
+      border-left-color: var(--gold-light);
+      box-shadow: 0 8px 40px rgba(201,168,76,0.08), inset 0 0 0 1px rgba(201,168,76,0.1);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .exp-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .exp-duration {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-family: 'Trebuchet MS', sans-serif;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .exp-company {
+      font-size: 0.88rem;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .exp-location {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-family: 'Trebuchet MS', sans-serif;
+      letter-spacing: 0.05em;
+    }
+
+    .exp-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .exp-highlights li {
+      font-size: 0.9rem;
+      color: #AAAAAA;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-highlights li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+      top: 3px;
+    }
+
+    /* ─── Education ────────────────────────────────────────────── */
+    #education {
+      background: var(--black-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .edu-card {
+      background: var(--black-card2);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      padding: 44px 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      max-width: 780px;
+      transition: box-shadow 0.3s, border-top-color 0.3s;
+    }
+
+    .edu-card:hover {
+      box-shadow: 0 12px 50px rgba(201,168,76,0.1);
+      border-top-color: var(--gold-light);
+    }
+
+    .edu-institute {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .edu-degree {
+      font-size: 0.92rem;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .edu-years {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Trebuchet MS', sans-serif;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+
+    .edu-award {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.25);
+      font-size: 0.78rem;
+      color: var(--gold-light);
+      font-family: 'Trebuchet MS', sans-serif;
+      letter-spacing: 0.07em;
+    }
+
+    .edu-badge {
+      text-align: right;
+    }
+
+    .edu-badge-icon {
+      font-size: 3.5rem;
+      line-height: 1;
+      opacity: 0.18;
+      filter: sepia(1) saturate(4) hue-rotate(10deg);
+    }
+
+    /* ─── Contact ──────────────────────────────────────────────── */
+    #contact { background: var(--black); text-align: center; }
+
+    .contact-heading {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+
+    .contact-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 56px;
+      font-style: italic;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 38px;
+      text-decoration: none;
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: all 0.35s;
+    }
+
+    .contact-link.primary {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-link.primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+
+    .contact-link.primary:hover { color: var(--black); }
+    .contact-link.primary:hover::before { transform: translateX(0); }
+
+    .contact-link.secondary {
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .contact-link.secondary:hover {
+      color: var(--gold);
+      border-color: rgba(201,168,76,0.4);
+    }
+
+    .contact-email-display {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    /* ─── Footer ───────────────────────────────────────────────── */
+    footer {
+      padding: 32px 60px;
+      background: var(--black-soft);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-name {
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size: 0.82rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: 'Trebuchet MS', sans-serif;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── Divider ──────────────────────────────────────────────── */
+    .gold-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.25;
+    }
+
+    /* ─── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 28px; }
+      .nav-links { display: none; }
+      section { padding: 80px 28px; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-stat {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px 40px;
+      }
+
+      .edu-card {
+        grid-template-columns: 1fr;
+      }
+
+      .edu-badge { display: none; }
+
+      footer { padding: 24px 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-name { font-size: 2.8rem; }
+      .exp-card { padding: 24px 20px; }
+      .exp-header { flex-direction: column; }
+      .edu-card { padding: 28px 24px; }
+      .contact-links { flex-direction: column; align-items: center; }
+    }
+
+    /* ─── Fade-in animation ────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-inner > * {
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-eyebrow { animation-delay: 0.1s; }
+    .hero-name    { animation-delay: 0.25s; }
+    .hero-title   { animation-delay: 0.4s; }
+    .hero-tagline { animation-delay: 0.55s; }
+    .hero-cta     { animation-delay: 0.7s; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────────────── -->
+  <nav>
+    <a class="nav-logo" href="#hero">PT</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ───────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Portfolio · 2026</p>
+      <h1 class="hero-name">
+        <span class="gold-underline">Prince</span><br>Tripathi
+      </h1>
+      <p class="hero-title">
+        Product Leader
+        <span class="hero-dot">·</span>
+        2x Founder
+        <span class="hero-dot">·</span>
+        Consumer Tech
+        <span class="hero-dot">|</span>
+        Fintech
+        <span class="hero-dot">|</span>
+        Marketplace
+      </p>
+      <p class="hero-tagline">"Building products for the next billion users"</p>
+      <div class="hero-cta">
+        <a class="btn-gold" href="#experience">View My Work</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── About ──────────────────────────────────────────────────── -->
+  <section id="about">
+    <div class="max-w">
+      <p class="section-label">About Me</p>
+      <div class="about-grid">
+        <div class="about-left">
+          <h2 class="section-title">Who I Am</h2>
+          <div class="about-stat">
+            <div class="stat-item">
+              <div class="stat-number">9+</div>
+              <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">2x</div>
+              <div class="stat-label">Venture-backed Founder</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">1M+</div>
+              <div class="stat-label">Users Impacted</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">₹4.8Cr</div>
+              <div class="stat-label">ARR Achieved</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="about-text">
+            I'm a product leader with 9+ years of experience building products from 0 to 1.
+            As a 2x founder of venture-backed voice-first startups for Bharat, I've led products
+            from vision to massive scale. Currently leading Used Truck Marketplace and Fintech
+            products at WheelsEye. I studied Computer Software Engineering at Jaypee Institute
+            of Information Technology.
+          </div>
+          <div class="about-tags">
+            <span class="tag">Product Strategy</span>
+            <span class="tag">0 → 1 Builds</span>
+            <span class="tag">Fintech</span>
+            <span class="tag">Marketplace</span>
+            <span class="tag">Consumer Tech</span>
+            <span class="tag">Growth</span>
+            <span class="tag">Agile / SCRUM</span>
+            <span class="tag">Voice-First</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ─────────────────────────────────────────────── -->
+  <section id="experience">
+    <div class="max-w">
+      <p class="section-label">Career</p>
+      <h2 class="section-title">Work Experience</h2>
+
+      <div class="timeline">
+
+        <!-- Card 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <span class="exp-title">Product – New Initiatives</span>
+              <span class="exp-duration">Oct 2022 – Present · 3 yrs 6 mos</span>
+            </div>
+            <div class="exp-company">WheelsEye · Full-time</div>
+            <div class="exp-location">📍 Gurugram, India</div>
+            <ul class="exp-highlights">
+              <li>Leading Used Truck Marketplace from ideation to execution — 200+ user interviews conducted</li>
+              <li>Built horizontal App Notification system across GPS, FASTag, diesel sensors, load and credit products</li>
+              <li>Developed Driver Score product using GPS data impacting 60,000+ truck operators</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <span class="exp-title">Co-Founder &amp; CEO</span>
+              <span class="exp-duration">May 2021 – Aug 2022</span>
+            </div>
+            <div class="exp-company">MentorPlus · Full-time</div>
+            <div class="exp-location">📍 Noida, India</div>
+            <ul class="exp-highlights">
+              <li>AI-enabled cohort-based platform to improve communication skills for professionals</li>
+              <li>Backed by Infosys founders, IndiaMART's Dinesh Agarwal, and GSF's Rajesh Sawhney</li>
+              <li>Achieved ₹40L+ MRR and ₹4.8 Cr+ ARR with 1,200 paid users</li>
+              <li>Improved NPS from 68 to 86 through user-centric product enhancements</li>
+              <li>Led 12+ member cross-functional team across Product, Engineering, Design and Marketing</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <span class="exp-title">Co-Founder &amp; CEO</span>
+              <span class="exp-duration">Apr 2018 – Aug 2022</span>
+            </div>
+            <div class="exp-company">Bolkar App · Full-time</div>
+            <div class="exp-location">📍 Noida, India</div>
+            <ul class="exp-highlights">
+              <li>India's first voice-led Q&amp;A platform for the next 500 million native language internet users</li>
+              <li>Backed by Axilor Ventures and GSF India</li>
+              <li>Scaled to 1M+ users and 15 lakh+ audio Q&amp;A across 5 Indian languages</li>
+              <li>Nominated by Google for Best App in India 2020</li>
+              <li>Onboarded 1,000+ active creators — 3x content creation in 3 months</li>
+              <li>Boosted day-30 retention from 60% to 74% using gamification</li>
+              <li>Acquired 30K users at ₹2 CAC via YouTube creator campaign (18M subscribers channel)</li>
+              <li>Led 20+ member cross-functional team under Agile / SCRUM</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <span class="exp-title">Co-Founder · Head of Product</span>
+              <span class="exp-duration">Jun 2016 – Jan 2018</span>
+            </div>
+            <div class="exp-company">Spaclon</div>
+            <div class="exp-location">📍 Noida, India</div>
+            <ul class="exp-highlights">
+              <li>Built salon and spa discovery platform during college — first entrepreneurial venture</li>
+              <li>Users could search, rate and review salons; salon owners could list and manage their profiles</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Education ──────────────────────────────────────────────── -->
+  <section id="education">
+    <div class="max-w">
+      <p class="section-label">Academic Background</p>
+      <h2 class="section-title">Education</h2>
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-institute">Jaypee Institute of Information Technology</div>
+          <div class="edu-degree">B.Tech · Computer Software Engineering</div>
+          <div class="edu-years">2013 – 2017 · Noida, India</div>
+          <div class="edu-award">
+            <span>🏆</span>
+            <span>Winner · Jaypee Entrepreneurship Development Program · Mar 2016</span>
+          </div>
+        </div>
+        <div class="edu-badge">
+          <div class="edu-badge-icon">🎓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ─────────────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="max-w">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="contact-heading">Let's Build Something<br><span style="color:var(--gold)">Great</span></h2>
+      <p class="contact-sub">Open to conversations about products, startups, and opportunities.</p>
+
+      <p class="contact-email-display">Tripathiprincejiit62@gmail.com</p>
+      <div class="contact-links">
+        <a class="contact-link primary"
+           href="mailto:Tripathiprincejiit62@gmail.com">
+          ✉ &nbsp;Send Email
+        </a>
+        <a class="contact-link secondary"
+           href="https://www.linkedin.com/in/tripathiprince/"
+           target="_blank"
+           rel="noopener noreferrer">
+          &#8599; &nbsp;LinkedIn
+        </a>
+      </div>
+      <div class="gold-divider"></div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-name">PRINCE TRIPATHI</span>
+    <span class="footer-copy">© 2026 · Product Leader · 2x Founder</span>
+  </footer>
+
+</body>
+</html>
