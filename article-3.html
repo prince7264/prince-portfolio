@@ -8,15 +8,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold:       #C9A84C;
-      --gold-light: #E8C97A;
-      --gold-dark:  #A07830;
-      --black:      #0A0A0A;
-      --black-soft: #111111;
-      --black-card: #141414;
-      --text:       #E8E8E8;
-      --text-muted: #888888;
-      --border:     #2A2A2A;
+      --gold:       #B8860B;
+      --gold-light: #D4A017;
+      --gold-dark:  #8B6508;
+      --black:      #FAF9F6;
+      --black-soft: #F0EBE0;
+      --black-card: #FFFFFF;
+      --text:       #1C1C1C;
+      --text-muted: #6E6860;
+      --border:     #E5DDD0;
     }
 
     html { scroll-behavior: smooth; }
@@ -36,9 +36,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 60px;
-      background: rgba(10,10,10,0.92);
+      background: rgba(250,249,246,0.95);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,168,76,0.12);
+      border-bottom: 1px solid rgba(184,134,11,0.15); box-shadow: 0 1px 20px rgba(0,0,0,0.06);
     }
 
     .nav-logo {
@@ -81,7 +81,7 @@
       font-family: 'Trebuchet MS', sans-serif;
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 800;
-      color: #FFFFFF;
+      color: #1C1C1C;
       line-height: 1.15;
       margin-bottom: 28px;
       letter-spacing: -0.01em;
@@ -99,7 +99,7 @@
     .meta-author {
       font-family: 'Trebuchet MS', sans-serif;
       font-size: 0.85rem;
-      color: var(--gold-light);
+      color: var(--gold-dark);
       letter-spacing: 0.05em;
     }
 
@@ -120,7 +120,7 @@
 
     .article-body p {
       font-size: 1.08rem;
-      color: #C8C8C8;
+      color: #4A4540;
       margin-bottom: 28px;
       line-height: 1.85;
     }
@@ -146,7 +146,7 @@
     }
 
     .article-body strong {
-      color: #FFFFFF;
+      color: #1C1C1C;
       font-weight: 700;
     }
 
@@ -165,7 +165,7 @@
     }
 
     .stat-box {
-      background: var(--black-card);
+      background: #FFFFFF;
       border: 1px solid var(--border);
       border-top: 3px solid var(--gold);
       padding: 24px 20px;
@@ -195,14 +195,14 @@
       padding: 20px 32px;
       margin: 40px 0;
       font-size: 1.2rem;
-      color: var(--gold-light);
+      color: var(--gold-dark);
       font-style: italic;
       line-height: 1.6;
     }
 
     /* insight block */
     .insight {
-      background: var(--black-card);
+      background: #FFFFFF;
       border: 1px solid var(--border);
       border-left: 3px solid var(--gold);
       padding: 28px 32px;
@@ -211,7 +211,7 @@
 
     .insight p {
       margin-bottom: 0 !important;
-      color: #BBBBBB;
+      color: #5A5550;
       font-size: 1rem;
     }
 
@@ -222,12 +222,12 @@
     }
 
     .bio-card {
-      background: var(--black-card);
+      background: #FFFFFF;
       border: 1px solid var(--border);
       border-top: 3px solid var(--gold);
       padding: 32px 36px;
       font-size: 0.9rem;
-      color: #AAAAAA;
+      color: #5A5550;
       line-height: 1.75;
     }
 
@@ -238,7 +238,7 @@
     .bio-card a:hover { text-decoration: underline; }
 
     .article-end {
-      background: var(--black-soft);
+      background: #F0EBE0;
       border-top: 1px solid var(--border);
       padding: 60px;
       text-align: center;
@@ -257,7 +257,7 @@
       font-family: 'Trebuchet MS', sans-serif;
       font-size: 1.3rem;
       font-weight: 700;
-      color: #FFFFFF;
+      color: #1C1C1C;
       margin-bottom: 8px;
     }
 
