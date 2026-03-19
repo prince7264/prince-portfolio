@@ -690,6 +690,87 @@
       .contact-links { flex-direction: column; align-items: center; }
     }
 
+    /* ─── Writing ──────────────────────────────────────────────── */
+    #writing { background: var(--black); }
+
+    .writing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .writing-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold-dark);
+      padding: 36px 32px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.3s, border-top-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .writing-card::after {
+      content: '→';
+      position: absolute;
+      bottom: 32px;
+      right: 32px;
+      font-size: 1.2rem;
+      color: var(--gold-dark);
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .writing-card:hover {
+      transform: translateY(-6px);
+      border-top-color: var(--gold-light);
+      box-shadow: 0 16px 48px rgba(201,168,76,0.1);
+    }
+
+    .writing-card:hover::after {
+      color: var(--gold-light);
+      transform: translateX(4px);
+    }
+
+    .writing-tag {
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .writing-title {
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.4;
+      padding-right: 24px;
+    }
+
+    .writing-excerpt {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .writing-meta {
+      font-family: 'Trebuchet MS', sans-serif;
+      font-size: 0.72rem;
+      color: #555;
+      letter-spacing: 0.06em;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) {
+      .writing-grid { grid-template-columns: 1fr; }
+    }
+
     /* ─── Fade-in animation ────────────────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(28px); }
@@ -715,6 +796,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#writing">Writing</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -906,6 +988,39 @@
         <div class="edu-badge">
           <div class="edu-badge-icon">🎓</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Writing ───────────────────────────────────────────────────── -->
+  <section id="writing">
+    <div class="max-w">
+      <p class="section-label">Essays &amp; Thinking</p>
+      <h2 class="section-title">Writing</h2>
+
+      <div class="writing-grid">
+
+        <a class="writing-card" href="article-1.html">
+          <span class="writing-tag">Product · AI · Decision-Making</span>
+          <div class="writing-title">I Changed One Question and Everything Improved</div>
+          <div class="writing-excerpt">I stopped asking AI "what do you think?" and started asking "what am I missing?" That small shift turned AI from a note-taker into a genuine challenger.</div>
+          <div class="writing-meta">5 min read</div>
+        </a>
+
+        <a class="writing-card" href="article-2.html">
+          <span class="writing-tag">Product · Health Tech · Market Analysis</span>
+          <div class="writing-title">In Health Wearables, Science Is the Real Product</div>
+          <div class="writing-excerpt">Everyone talks about price and distribution. But without deep physiological science and validated insights, there's no real value — just a device on a wrist.</div>
+          <div class="writing-meta">6 min read</div>
+        </a>
+
+        <a class="writing-card" href="article-3.html">
+          <span class="writing-tag">Startups · Bharat · Product Thinking</span>
+          <div class="writing-title">What Building for Bharat Actually Taught Me About Product</div>
+          <div class="writing-excerpt">The next 500 million Indian users won't behave like the first 100 million. Real Bharat-first product thinking starts with a fundamentally different question.</div>
+          <div class="writing-meta">7 min read</div>
+        </a>
+
       </div>
     </div>
   </section>
