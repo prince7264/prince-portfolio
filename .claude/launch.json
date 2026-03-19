@@ -9,8 +9,8 @@
     },
     {
       "name": "Static Site (npx serve)",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", ".", "--listen", "3000"],
+      "runtimeExecutable": "/tmp/serve-local/node_modules/.bin/serve",
+      "runtimeArgs": ["/Users/princetripathi/Desktop/My First Claude Project", "--listen", "3000"],
       "port": 3000
     }
   ]

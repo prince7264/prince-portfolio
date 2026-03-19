@@ -267,6 +267,59 @@
       50%       { opacity: 1;   transform: scaleY(1.15); }
     }
 
+    /* ─── Photo ────────────────────────────────────────────────── */
+    .photo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .photo-ring {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      flex-shrink: 0;
+    }
+
+    /* spinning gold ring */
+    .photo-ring::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold) 0deg, transparent 120deg, var(--gold-dark) 240deg, transparent 300deg, var(--gold) 360deg);
+      animation: spinRing 6s linear infinite;
+    }
+
+    @keyframes spinRing {
+      to { transform: rotate(360deg); }
+    }
+
+    .photo-ring::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: var(--black-soft);
+    }
+
+    .photo-ring img {
+      position: relative;
+      z-index: 1;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+      transition: filter 0.4s;
+    }
+
+    .photo-ring:hover img {
+      filter: grayscale(0%) contrast(1.1);
+    }
+
     /* ─── About ────────────────────────────────────────────────── */
     #about {
       background: var(--black-soft);
@@ -836,6 +889,11 @@
       <p class="section-label">About Me</p>
       <div class="about-grid">
         <div class="about-left">
+          <div class="photo-wrap">
+            <div class="photo-ring">
+              <img src="photo.jpg" alt="Prince Tripathi" />
+            </div>
+          </div>
           <h2 class="section-title">Who I Am</h2>
           <div class="about-stat">
             <div class="stat-item">
